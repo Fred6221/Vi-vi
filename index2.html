@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vi-vi Animation</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #87CEEB; /* Bleu ciel */
+            overflow: hidden;
+        }
+        .text {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ff4500; /* Orange */
+            animation: scaleEffect 5s ease-in-out;
+        }
+        @keyframes scaleEffect {
+            0%, 100% {
+                transform: scale(1); /* Taille normale */
+            }
+            50% {
+                transform: scale(1.5); /* Grossissement */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="text">Vi-vi</div>
+    <script>
+        setTimeout(() => {
+            window.location.href = 'index.php';
+        }, 5000);
+    </script>
+</body>
+</html>

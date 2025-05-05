@@ -1,0 +1,92 @@
+<?php
+session_start();
+require_once '../config/database.php';
+require_once '../includes/functions.php';
+
+// Set content type to JSON
+header('Content-Type: application/json');
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['success' => false, 'message' => 'Utilisateur non connecté']);
+    exit;
+}
+
+// Get current user
+$userId = $_SESSION['user_id'];
+$user = getUserById($userId);
+
+if (!$user) {
+    // Invalid user ID in session
+    echo json_encode(['success' => false, 'message' => 'Utilisateur invalide']);
+    exit;
+}
+
+// Check if request is POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'message' => 'Méthode non autorisée']);
+    exit;
+}
+
+// Get friend ID
+$friendId = isset($_POST['user_id']) ? (int)$_POST['user_id'] : 0;
+
+// Validate friend ID
+if ($friendId <= 0) {
+    echo json_encode(['success' => false, 'message' => 'ID d\'utilisateur invalide']);
+    exit;
+}
+
+// Check if friend exists
+$friend = getUserById($friendId);
+
+if (!$friend) {
+    echo json_encode(['success' => false, 'message' => 'Utilisateur introuvable']);
+    exit;
+}
+
+// Check if trying to add self
+if ($friendId === $userId) {
+    echo json_encode(['success' => false, 'message' => 'Vous ne pouvez pas vous ajouter vous-même']);
+    exit;
+}
+
+// Check if already friends or request pending
+$existing = fetchRow(
+    "SELECT * FROM friendships WHERE 
+    (user_id = ? AND friend_id = ?) OR 
+    (user_id = ? AND friend_id = ?)", 
+    [$userId, $friendId, $friendId, $userId], 
+    "iiii"
+);
+
+if ($existing) {
+    if ($existing['status'] === 'accepted') {
+        echo json_encode(['success' => false, 'message' => 'Vous êtes déjà amis']);
+    } else if ($existing['user_id'] === $userId) {
+        echo json_encode(['success' => false, 'message' => 'Demande d\'ami déjà envoyée']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Cet utilisateur vous a déjà envoyé une demande d\'ami']);
+    }
+    exit;
+}
+
+// Send friend request
+$success = sendFriendRequest($userId, $friendId);
+
+if ($success) {
+    // Create notification for recipient
+    createNotification(
+        $friendId,
+        'friend_request',
+        $user['name'] . ' vous a envoyé une demande d\'ami',
+        $userId
+    );
+    
+    // Return success response
+    echo json_encode(['success' => true, 'message' => 'Demande d\'ami envoyée avec succès']);
+} else {
+    // Return error response
+    echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'envoi de la demande d\'ami']);
+}
+exit;

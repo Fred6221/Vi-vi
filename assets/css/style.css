@@ -1,0 +1,631 @@
+/* 
+ * SocialConnect - Custom CSS Styles
+ * A beautiful social media platform
+ */
+
+/* General Styles */
+:root {
+    --primary-color: #4267B2;
+    --secondary-color: #E9EBEE;
+    --accent-color: #1877F2;
+    --text-color: #1C1E21;
+    --light-text: #65676B;
+    --border-color: #CED0D4;
+    --hover-bg: #F2F3F5;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-color);
+    background-color: #F0F2F5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* Navbar Styles */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar .nav-link {
+    position: relative;
+}
+
+.navbar .nav-link.active {
+    color: var(--accent-color) !important;
+}
+
+/* Custom notification badge positioning */
+.navbar .nav-link .badge,
+.mobile-nav-link .badge {
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+/* Welcome Page */
+.welcome-text {
+    padding: 2rem 0;
+}
+
+.welcome-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Post Styles */
+.post {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.post:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post .card-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-image img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Reaction Styles */
+.reaction-container {
+    position: relative;
+}
+
+.reaction-button {
+    transition: all 0.2s ease;
+}
+
+.reaction-button.reacted {
+    font-weight: bold;
+}
+
+.reaction-button.reacted-like {
+    color: var(--accent-color);
+}
+
+.reaction-button.reacted-love {
+    color: #E41B17;
+}
+
+.reaction-button.reacted-haha,
+.reaction-button.reacted-wow {
+    color: #F5C33B;
+}
+
+.reaction-button.reacted-sad {
+    color: #1877F2;
+}
+
+.reaction-button.reacted-angry {
+    color: #E41B17;
+}
+
+.reaction-selector {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.reaction-container:hover .reaction-selector {
+    opacity: 1;
+    visibility: visible;
+    top: -60px;
+}
+
+.reaction-option {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.reaction-option:hover {
+    transform: scale(1.3);
+}
+
+.reaction-summary {
+    display: flex;
+    align-items: center;
+}
+
+.reaction-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-right: -5px;
+    font-size: 0.7rem;
+}
+
+.reaction-count {
+    margin-left: 8px;
+    color: var(--light-text);
+}
+
+.comments-section {
+    padding-top: 0.5rem;
+}
+
+.comment-bubble {
+    background-color: var(--secondary-color);
+    border-radius: 18px;
+    padding: 8px 12px;
+    flex: 1;
+}
+
+.comment-form .form-control {
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+}
+
+/* Profile Styles */
+.profile-header {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture .edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.profile-info h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-bio {
+    color: var(--light-text);
+    margin-bottom: 1rem;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.profile-stats .stat {
+    text-align: center;
+}
+
+.profile-stats .stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.profile-stats .stat-label {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+/* Friend Styles */
+.friend-card {
+    transition: transform 0.2s ease;
+}
+
+.friend-card:hover {
+    transform: translateY(-5px);
+}
+
+.friend-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Message Styles */
+.conversation-list {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Message Context Menu */
+.message-context-menu {
+    position: absolute;
+    display: none;
+    z-index: 1000;
+    min-width: 180px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.message-context-menu .list-group {
+    margin-bottom: 0;
+}
+
+.message-context-menu .list-group-item {
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.message-context-menu .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.message-context-menu .list-group-item:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Reply Preview */
+#reply-preview {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+}
+
+.conversation-item {
+    transition: background-color 0.2s ease;
+}
+
+.conversation-item:hover, .conversation-item.active {
+    background-color: var(--hover-bg);
+}
+
+.message-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 75%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 18px;
+    position: relative;
+}
+
+.message.sent {
+    background-color: var(--accent-color);
+    color: white;
+    margin-left: auto;
+}
+
+.message.received {
+    background-color: var(--secondary-color);
+    margin-right: auto;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: var(--light-text);
+    display: flex;
+    align-items: center;
+}
+
+.message.sent .message-time {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Read Receipt Styles */
+.read-receipt {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+/* Single checkmark for sent (not delivered) */
+.read-receipt-sent {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+/* Double checkmark for delivered but not read */
+.read-receipt-delivered {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+/* Double checkmark for read (blue) */
+.read-receipt-read {
+    color: #1877F2;
+    font-size: 0.8rem;
+}
+
+/* Message Reactions Styles */
+.message-reactions {
+    margin-top: 0.5rem;
+}
+
+.reaction-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+    min-height: 24px;
+}
+
+.reaction-count {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    margin-right: 4px;
+}
+
+.message.sent .reaction-count {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.reaction-buttons {
+    display: none;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    background-color: white;
+    border-radius: 20px;
+    padding: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.message:hover .reaction-buttons {
+    display: flex;
+}
+
+.reaction-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 2px 5px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.reaction-btn:hover {
+    transform: scale(1.2);
+    background-color: var(--hover-bg);
+}
+
+.reaction-btn.active {
+    background-color: var(--hover-bg);
+}
+
+/* Notification Styles */
+.notification-item {
+    transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.notification-item.unread {
+    background-color: rgba(24, 119, 242, 0.05);
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(66, 103, 178, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Mobile Navigation Footer */
+.mobile-nav-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.mobile-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light-text);
+    text-decoration: none;
+    padding: 8px 0;
+    position: relative;
+    padding-left: 10px; /* Add padding to make room for the badge */
+}
+
+.mobile-nav-link i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.mobile-nav-link.active {
+    color: var(--accent-color);
+}
+
+.mobile-nav-text {
+    font-size: 0.8rem;
+}
+
+/* Add padding to body on small screens to account for fixed footer */
+@media (max-width: 767.98px) {
+    body {
+        padding-bottom: 70px;
+    }
+    
+    /* Adjust badge position for mobile view */
+    .mobile-nav-link .badge {
+        left: 5px;
+        top: 10px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    margin-top: auto;
+}
+
+footer .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+footer .social-links a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .welcome-text {
+        text-align: center;
+        padding: 1rem 0;
+    }
+    
+    .profile-stats {
+        gap: 1rem;
+    }
+    
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-info h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
